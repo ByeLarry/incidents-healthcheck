@@ -1,0 +1,7 @@
+services:
+  incidents-healthcheck-service:
+    image: incidents-healthcheck
+    container_name: incidents-healthcheck
+    build:
+      context: .
+      dockerfile: HealthCheckService/Dockerfile
