@@ -4,4 +4,4 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=7070
     ports:
-      - "7070"
+      - "7070:7070"
