@@ -1,10 +1,6 @@
-﻿
-using HealthChecks.MongoDb;
-using HealthCheckService.Options;
-using Microsoft.Extensions.DependencyInjection;
+﻿using HealthCheckService.Options;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using MongoDB.Driver;
-using Npgsql;
 using RabbitMQ.Client;
 
 namespace SearchService.Extensions
