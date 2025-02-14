@@ -12,6 +12,8 @@ internal class Program
 
 		var app = builder.Build();
 
+		app.MapGet("/", () => Results.Ok("Service is up and running"));
+
 		app.MapCustomHealthChecks();
 
 		app.Run();

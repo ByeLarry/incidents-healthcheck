@@ -50,16 +50,23 @@ namespace SearchService.Extensions
 					return client;
 				})
 				.AddHealthChecks()
-				.AddRabbitMQ(name: "RabbitMQ", failureStatus: HealthStatus.Unhealthy, tags: new[] { "default" })
-				.AddRedis(redisConnectionString, name: "Redis", failureStatus: HealthStatus.Unhealthy, tags: new[] { "default" })
-				.AddMongoDb(name: "MongoDB", failureStatus: HealthStatus.Unhealthy, tags: new[] {"default", "auth"})
-				.AddNpgSql(pgSqlConnectionString, name: "Postgres", failureStatus: HealthStatus.Unhealthy, tags: new[] { "default", "marks" })
+				.AddDiskStorageHealthCheck(options =>
+				{
+					options.AddDrive("/", 1024); 
+				}, name: "disk", tags: new[] { "health-checks" })
+				.AddUrlGroup(new Uri("http://localhost:7070"), name: "self", failureStatus: HealthStatus.Unhealthy, tags: new[] { "health-checks" })
+				.AddProcessAllocatedMemoryHealthCheck(500 * 1024 * 1024, "memory_heap", tags: new[] { "health-checks" }) // Порог 500MB
+				.AddWorkingSetHealthCheck(1024 * 1024 * 1024, "memory_rss", tags: new[] { "health-checks" }) // Порог 1GB
+				.AddRabbitMQ(name: "RabbitMQ", failureStatus: HealthStatus.Unhealthy, tags: new[] { "health-checks" })
+				.AddRedis(redisConnectionString, name: "Redis", failureStatus: HealthStatus.Unhealthy, tags: new[] { "health-checks" })
+				.AddMongoDb(name: "MongoDB", failureStatus: HealthStatus.Unhealthy, tags: new[] { "health-checks", "auth"})
+				.AddNpgSql(pgSqlConnectionString, name: "Postgres", failureStatus: HealthStatus.Unhealthy, tags: new[] { "health-checks", "marks" })
 				.AddElasticsearch(setup: options =>
 				{
 					options.UseServer(elasticsearchOptions.Uri);
 					options.UseBasicAuthentication(elasticsearchOptions.Username, elasticsearchOptions.Password);
 
-				}, name: "Elasticsearch", failureStatus: HealthStatus.Unhealthy, tags: new[] { "default", "search" });
+				}, name: "Elasticsearch", failureStatus: HealthStatus.Unhealthy, tags: new[] { "health-checks", "search" });
 
 			return services;
 		}
