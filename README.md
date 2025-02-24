@@ -21,11 +21,13 @@ docker-compose -f "docker-compose.yml" -f "docker-compose.override.yml" -p "inci
 
 ## Проектирование
 
-======
-
 _Диаграммы можно сохранять и редактировать в ***[draw.io](https://app.diagrams.net/)***_
 
+- ### Компоненты микросервиса проверки состояния системы
+  ![Компоненты микросервиса проверки состояния системы](https://github.com/user-attachments/assets/052d2fa2-affe-4623-9e90-381bd216a545)
+
 ## Ссылки
+
 - #### Клиентская часть:  *https://github.com/ByeLarry/incidents-frontend*  [![incidents-frontend](https://github.com/ByeLarry/incidents-frontend/actions/workflows/incidents-frontend.yml/badge.svg)](https://github.com/ByeLarry/incidents-frontend/actions/workflows/incidents-frontend.yml)
 - #### Сервис авторизации:  *https://github.com/ByeLarry/incidents-auth-service*  [![incidents-auth](https://github.com/ByeLarry/incidents-auth-service/actions/workflows/incidents-auth.yml/badge.svg)](https://github.com/ByeLarry/incidents-auth-service/actions/workflows/incidents-auth.yml)
 - #### Сервис марок (инцидентов): *https://github.com/ByeLarry/indcidents-marks-service*  [![incidents-marks](https://github.com/ByeLarry/incidents-marks-service/actions/workflows/incidents-marks.yml/badge.svg)](https://github.com/ByeLarry/incidents-marks-service/actions/workflows/incidents-marks.yml)
